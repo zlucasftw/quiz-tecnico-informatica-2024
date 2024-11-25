@@ -1,7 +1,7 @@
 from flask import Flask
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS   
+from flask_cors import CORS
 
 # Define ORM do DB com método SQLAlchemy()
 db = SQLAlchemy()
@@ -28,11 +28,15 @@ def create_app():
     from .models.quiz_model import Quiz #, Categorias
     from .models.categoria_model import Categoria
     from .models.contato_model import Contato
+    from .models.login_model import Login
     
     # Início: Importamos e registramos o Blueprint para as rotas
     
     from .routes.routes import bp
     app.register_blueprint(bp)
+    
+    """ from .routes.login_routes import bp_login
+    app.register_blueprint(bp_login) """
     
     # Fim: Importamos e registramos o Blueprint para as rotas    
     

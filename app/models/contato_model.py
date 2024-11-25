@@ -1,6 +1,7 @@
 from .. import db
 
 class Contato(db.Model):
+    __tablename__ = 'contato'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
