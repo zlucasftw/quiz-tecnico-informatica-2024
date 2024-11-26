@@ -12,7 +12,9 @@ CREATE TABLE contato (
     email VARCHAR(255) NOT NULL UNIQUE,
     mensagem TEXT NOT NULL,
     telefone VARCHAR(45) DEFAULT NULL,
-    data_envio DATETIME DEFAULT NOW()
+    data_envio DATETIME NOT NULL DEFAULT NOW(),
+    data_atendimento DATETIME,
+    data_expiracao DATETIME
     );
 
 CREATE TABLE login (

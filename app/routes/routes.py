@@ -25,6 +25,9 @@ def listar_quiz():
     
     quiz = Quiz.query.all()
     
+    if quiz is None:
+        return jsonify({"Erro": "Não encontrado"}), 404
+    
     info_quiz = []
     
     for info in quiz:
@@ -33,11 +36,13 @@ def listar_quiz():
         
     print(info_quiz)
     
-    if info_quiz is not None:
-        print(info_quiz)
-        return jsonify(info_quiz)
+    if not info_quiz:
+        return jsonify({"Erro": "Não encontrado"}), 404
     else:
-        return make_response(404)
+        return jsonify(info_quiz)
+    # if info_quiz:
+    # else:
+    #     return 404
     
     # print(info_quiz)
     # return jsonify(info_quiz)
@@ -61,6 +66,7 @@ def cadastrar_quiz():
         novo_quiz_dict = {}
         
         try:
+            
             db.session.add(novo_quiz)
             db.session.commit()
             
@@ -72,6 +78,7 @@ def cadastrar_quiz():
             # novo_quiz_dict['']
             print(jsonify(novo_quiz_dict))
             return jsonify(novo_quiz_dict), 201
+        
         except Exception as erro:
             db.session.rollback()
             return 504
@@ -114,7 +121,7 @@ Realiza validação de login.
 @bp.route("/contato", methods=["POST"])
 def registrar_contato():
     
-    nome_form, email_form, mensagem_form, telefone_form = None
+    nome_form, email_form, mensagem_form, telefone_form = None, None, None, None
     
     if request.method == 'POST':
         
@@ -122,14 +129,21 @@ def registrar_contato():
         # email_form = request.form('email')
         # mensagem_form = request.form('mensagem')
         # telefone_form = request.form('telefone')
-        contato = request.json()
+        contato = request.get_json()
         
         nome_form = contato['nome']
         email_form = contato['email']
-        mensagem_form = contato['mensagem']        
+        mensagem_form = contato['mensagem']
         telefone_form = contato['telefone']
         
-        novo_contato = Contato(nome=nome_form,email=email_form,mensagem_form=mensagem_form,telefone=telefone_form)
+        emails = Contato.query.all()
+
+        for email in emails:
+        
+            if email.email == email_form:
+                return jsonify({ "Erro": "Contato já enviado!" }), 400
+        
+        novo_contato = Contato(nome=nome_form,email=email_form,mensagem=mensagem_form,telefone=telefone_form)
         novo_contato_resposta = {}
         
         try:
@@ -146,11 +160,38 @@ def registrar_contato():
         
         except Exception as exception:
             db.session.rollback()
+            db.session.close()
             print(exception)
             return 500
         
     else:
         return 405
+
+@bp.route("/contato", methods=["GET"])
+def listar_contatos():
+    
+    try:
+        
+        contatos = Contato.query.all()
+        
+        # if contatos is None:
+        #     return jsonify({ "Erro": "Erro no servidor" }), 500
+        
+        contato_resposta = []
+        
+        for contato in contatos:
+            contato = dict(contato)
+            contato_resposta.append(contato)
+        
+        # print(contato)
+        
+        # if not contato:
+        #     return jsonify({ "Erro": "Não encontrado" }), 404
+        # else:
+        return jsonify(contato_resposta), 302
+    
+    except Exception as exception:
+        return jsonify({ "Erro": "Erro no servidor" }), 500
 
 """ 
 
@@ -169,11 +210,11 @@ def validar_login():
         # email_form = request.form('email')
         # senha_form = request.form('senha')
         form = request.get_json()
-        email_form = form['email'] 
+        email_form = form['email']
         senha_form = form['senha']
         
     else:
-        return make_response({ "mensagem": "Login inválido!" }), 401
+        return jsonify({ "mensagem": "Login inválido!" }), 401
     
     try:
         
@@ -182,11 +223,12 @@ def validar_login():
         if email_form == login.email:
             
             if senha_form == login.senha:
-                return make_response({ "mensagem": "Login validado!" }), 202
+                return jsonify({ "mensagem": "Login validado!" }), 202
             
         else:
-            return make_response({ "mensagem": "Login inválido!" }), 401
+            return jsonify({ "mensagem": "Login inválido!" }), 401
         
     except Exception as exception:
         print(exception)
-        return make_response({ "mensagem": "Login inválido!" }), 405
+        return jsonify({ "mensagem": "Login inválido!" }), 405
+
