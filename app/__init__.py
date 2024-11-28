@@ -9,7 +9,7 @@ db = SQLAlchemy()
 # Cria a função para montar a aplicação Flask e a RETORNA
 def create_app():
     
-    app = Flask(__name__, static_folder='static')
+    app = Flask(__name__, static_folder='/app/static')
     
     # Aplicando o CORS no app Flask para a API poder ser consumida por outra aplicação
     CORS(app)
@@ -34,6 +34,10 @@ def create_app():
     
     from .routes.routes import bp
     app.register_blueprint(bp)
+    
+    from .routes.quiz_routes import bp_quiz
+    app.register_blueprint(bp_quiz)
+    
     
     """ from .routes.login_routes import bp_login
     app.register_blueprint(bp_login) """

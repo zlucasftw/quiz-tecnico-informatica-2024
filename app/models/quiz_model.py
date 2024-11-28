@@ -18,13 +18,13 @@ class Quiz(db.Model):
     categoria_id = db.Column(db.Integer, nullable=False)
     pergunta_id = db.Column(db.Integer, nullable=False)
     
-    def perguntas_todict(self):
+    def quiz_todict(self):
         return {
-            "id": self.id,
-            "quantidade": self.quantidade,
             "titulo": self.titulo,
-            "perguntas": self.perguntas,
-            "id_categoria": self.id_categoria 
+            "url_imagem": self.url_imagem,
+            "quantidade_perguntas": self.quantidade_perguntas,
+            "categoria_id": self.categoria_id,
+            "pergunta_id": self.pergunta_id
         }
     
 # class Categorias(db.Model):
