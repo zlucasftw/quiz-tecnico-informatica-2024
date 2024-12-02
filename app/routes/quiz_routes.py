@@ -1,6 +1,9 @@
 from flask import Blueprint, jsonify, make_response, session, url_for, flash, redirect, request
 from app.models.quiz_model import Quiz
+from app.models.categoria_model import Categoria 
+from app.models.pergunta_model import Perguntas
 from app import db
+from flask import current_app as app
 
 bp_quiz = Blueprint("quiz", __name__, template_folder='../templates/')
 
@@ -11,8 +14,9 @@ def listar_quiz():
         
         try:
         
-            quiz = Quiz.query.all()
-
+            # quiz = Quiz.query.all()
+            quiz = app.session.query(Quiz, Categoria, Perguntas).join(Categoria, Categoria.id == Quiz.categoria_id).join(Perguntas, Perguntas.id == Quiz.pergunta_id).all()
+            print(quiz)
             info_quiz = []
 
             for q in quiz:

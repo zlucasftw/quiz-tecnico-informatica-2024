@@ -1,5 +1,6 @@
 from .. import db
 from datetime import datetime
+
 class Contato(db.Model):
     __tablename__ = 'contato'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

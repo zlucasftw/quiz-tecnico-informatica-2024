@@ -2,6 +2,9 @@ from flask import Flask
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, Relationship
+
 
 # Define ORM do DB com método SQLAlchemy()
 db = SQLAlchemy()
@@ -20,6 +23,12 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/quiz'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+    
+    # Criando Engine para conexão co mo banco de dados
+    
+    engine = create_engine('mysql+pymysql://root:root@localhost:3306/quiz')
+    
+    SESSION = sessionmaker(engine)
     
     #Inicializa o metódo db para app
     db.init_app(app)
