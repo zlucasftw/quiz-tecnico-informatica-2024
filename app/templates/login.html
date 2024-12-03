@@ -1,38 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="/app/static/base.css">
-    <link rel="stylesheet" href="/app/static/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Giovanni+Equine&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav id="container">
-        <div class="container-box1">
-            <h1>Quiz.</h1>
-        </div>
-        <div class="container-box2">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </div>
-        <div class="container-box3"></div>
-    </nav>
-    <section>
-        <div class="login-container">
-            <h2>Login</h2>
-            <form action="/login" method="POST">
-                <input placeholder="Email:" type="email" id="email" name="email" required>
-                <input placeholder="Senha:" type="password" id="password" name="password" required>
-                <button type="submit">Entrar</button>
-            </form>
-        </div>
-    </section>
+    <div class="login-container">
+        <h1 class="quiz-title">Quiz</h1>
+
+        <form action="/login" method="POST" class="login-form">
+            
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="senha" placeholder="Senha" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="login-button">Entrar</button>
+            </div>
+
+        </form>
+        
+    </div>
 </body>
 </html>

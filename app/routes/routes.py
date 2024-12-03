@@ -17,7 +17,25 @@ def index():
         return render_template('index.html')
     else:
         return make_response("Não encontrado", 404)
+    
+    if request.method == 'POST':
+        return make_response("Método inválido!", 405)
+    
+@bp.route("/home", methods=['GET'])
+def rota_home():
+    if request.method == 'GET':
+        return render_template('home.html')
+    else:
+        return make_response("Não encontrado", 404)
+    
+@bp.route("/contato", methods=['GET'])
+def rota_contato():
 
+    if request.method == 'GET':
+        return render_template('contato.html')
+    else:
+        return make_response("Não encontrado", 404)
+    
 # @bp.route('/categorias', methods=['GET'])
 # def quiz_categorias():
 #     categorias = Categorias.query.all()
@@ -26,8 +44,6 @@ def index():
 #         categorias.append(Categorias(fruta))
 #     print(frutasQuitanda)
 #     return jsonify(frutasQuitanda)
-
-
 
 """ 
 
@@ -96,7 +112,7 @@ def registrar_contato():
             return 500
         
     else:
-        return 405
+        return jsonify({ "mensagem": "Login inválido!" }), 405
 
 @bp.route("/contato", methods=["GET"])
 def listar_contatos():
@@ -122,50 +138,3 @@ def listar_contatos():
     
     except Exception as exception:
         return jsonify({ "Erro": "Erro no servidor" }), 500
-
-""" 
-
-Serviço de tratamento para requisições no Endpoint de login.
-Realiza validação de login.
-
-"""
-
-@bp.route("/login", methods=["GET"])
-def template_login():
-    if request.method == 'GET':
-        return render_template("login.html")
-    else:
-        return make_response("Erro", 404)
-
-@bp.route("/login", methods=["POST"])
-def validar_login():
-    
-    email_form = None
-    senha_form = None
-    
-    if request.method == 'POST':
-        # email_form = request.form('email')
-        # senha_form = request.form('senha')
-        form = request.get_json()
-        email_form = form['email']
-        senha_form = form['senha']
-        
-    else:
-        return jsonify({ "mensagem": "Login inválido!" }), 401
-    
-    try:
-        
-        login = Login.query.first()
-        
-        if email_form == login.email:
-            
-            if senha_form == login.senha:
-                return jsonify({ "mensagem": "Login validado!" }), 202
-            
-        else:
-            return jsonify({ "mensagem": "Login inválido!" }), 401
-        
-    except Exception as exception:
-        print(exception)
-        return jsonify({ "mensagem": "Login inválido!" }), 405
-

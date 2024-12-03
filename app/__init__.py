@@ -3,7 +3,7 @@ from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Relationship
+from sqlalchemy.orm import sessionmaker
 
 
 # Define ORM do DB com método SQLAlchemy()
@@ -12,7 +12,7 @@ db = SQLAlchemy()
 # Cria a função para montar a aplicação Flask e a RETORNA
 def create_app():
     
-    app = Flask(__name__, static_folder='/app/static')
+    app = Flask(__name__, static_folder='static')
     
     # Aplicando o CORS no app Flask para a API poder ser consumida por outra aplicação
     CORS(app)
@@ -26,9 +26,9 @@ def create_app():
     
     # Criando Engine para conexão co mo banco de dados
     
-    engine = create_engine('mysql+pymysql://root:root@localhost:3306/quiz')
+    # engine = create_engine('mysql+pymysql://root:root@localhost:3306/quiz')
     
-    SESSION = sessionmaker(engine)
+    # SESSION = sessionmaker(engine)
     
     #Inicializa o metódo db para app
     db.init_app(app)
@@ -47,9 +47,8 @@ def create_app():
     from .routes.quiz_routes import bp_quiz
     app.register_blueprint(bp_quiz)
     
-    
-    """ from .routes.login_routes import bp_login
-    app.register_blueprint(bp_login) """
+    from .routes.login_routes import bp_login
+    app.register_blueprint(bp_login)
     
     # Fim: Importamos e registramos o Blueprint para as rotas    
     

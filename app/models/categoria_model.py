@@ -13,4 +13,4 @@ class Categoria(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(150), nullable=False)
     
-    categoria_quiz_fk = relationship("Quiz", back_populates="categoria_quiz_fk") 
+    # categoria_quiz_fk = relationship("Quiz", back_populates="categoria_quiz_fk") 

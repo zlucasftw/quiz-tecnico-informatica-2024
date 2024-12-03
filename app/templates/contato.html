@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contato.css') }}">
+    <title>Quiz</title>
+</head>
+<body>
+    <nav id="container">
+        <div class="container-box1">
+            <h1>Quiz.</h1>
+        </div>
+        <div class="container-box2">
+            <ul>
+                <li><a href="/home"><b>Home</b></a></li>
+                <li><a href="/contato"><b>Contato</b></a></li>
+                <li><a href="/login"><b>Login</b></a></li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+        <div class="contato-container">
+            <h2>Deixe sua mensagem!</h2>
+            <form action="/contato" method="POST">
+                <input placeholder="Nome:" type="text" id="nome" name="nome" required>
+                <input placeholder="E-mail:" type="text" id="email" name="email" required>
+                <input placeholder="Telefone" type="text" id="telefone" name="telefone" required>
+                <textarea name="mensagem" id="mensagem">Mensagem...</textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

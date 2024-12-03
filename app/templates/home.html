@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Quiz.</a></li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Quiz</h1>
+        <div class="quiz-container">
+            <div class="quiz-item" style="background-image: url('https://images6.alphacoders.com/130/1305165.jpg');">
+                <span>Quiz Harry Potter</span>
+                <button>Jogar</button>
+            </div>
+            <div class="quiz-item" style="background-image: url('https://wallpapers.com/images/high/call-of-duty-modern-warfare-background-2ec04bvnayuyxp75.webp');">
+                <span>Quiz Call of Duty</span>
+                <button>Jogar</button>
+            </div>
+            <div class="quiz-item" style="background-image: url('https://www.vaicairnoenem.com/sites/default/files/2021-08/WhatsApp%20Image%202021-08-23%20at%2015.52.20.jpeg');">
+                <span>Quiz de Geografia</span>
+                <button>Jogar</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

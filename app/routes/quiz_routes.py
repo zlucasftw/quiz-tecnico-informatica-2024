@@ -14,13 +14,13 @@ def listar_quiz():
         
         try:
         
-            # quiz = Quiz.query.all()
-            quiz = app.session.query(Quiz, Categoria, Perguntas).join(Categoria, Categoria.id == Quiz.categoria_id).join(Perguntas, Perguntas.id == Quiz.pergunta_id).all()
-            print(quiz)
+            quiz = Quiz.query.all()
+            # quiz = app.session.query(Quiz, Categoria, Perguntas).join(Categoria, Categoria.id == Quiz.categoria_id).join(Perguntas, Perguntas.id == Quiz.pergunta_id).all()
+            # print(quiz)
             info_quiz = []
 
             for q in quiz:
-                info_quiz.append(Quiz.quiz_todict(q))
+                info_quiz.append(Quiz.to_dict(q))
             
             if not info_quiz:
                 return jsonify({"Erro": "Não encontrado"}), 404

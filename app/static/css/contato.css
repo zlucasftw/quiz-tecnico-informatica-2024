@@ -1,0 +1,119 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: rgb(239,241,219);
+    background: linear-gradient(0deg, rgba(239,241,219,1) 0%, rgba(29,133,196,1) 27%, rgba(0,43,69,1) 85%);
+    color: white;
+}
+
+#container {
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Centra o conteúdo horizontalmente */
+    align-items: center;
+}
+
+.container-box1, .container-box3 {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.container-box2 {
+    flex: 2; /* Permite que a caixa 2 ocupe mais espaço e mova-se para a esquerda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 530px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 35px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+nav ul li a:hover {
+    color: #1D85C4; /* Azul destacado */
+}
+
+.contato-container {
+    background-color: rgba(0, 43, 69, 0.8); /* Azul escuro translúcido */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.contato-container h2 {
+    color: #00A8E8; /* Azul claro */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.contato-container input, .contato-container textarea {
+    width: 82%;
+    padding: 15px;
+    margin: 10px auto;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo claro translúcido */
+    color: white;
+}
+
+.contato-container textarea {
+    max-width: 82%;
+    max-height: 40vh;
+    min-height: 100px;
+    resize: none;
+}
+
+.contato-container input::placeholder, 
+.contato-container textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Placeholder com transparência */
+    font-family: "Rubik", sans-serif;
+    font-size: large;
+}
+
+.contato-container button {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 40%;
+    padding: 10px;
+    background-color: #1D85C4; /* Azul principal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.contato-container button:hover {
+    background-color: #005F99; /* Azul mais escuro */
+    transform: scale(1.05); /* Leve zoom no hover */
+}

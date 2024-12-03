@@ -1,0 +1,95 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: rgb(239,241,219);
+    background: linear-gradient(0deg, rgba(239,241,219,1) 0%, rgba(29,133,196,1) 27%, rgba(0,43,69,1) 85%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.quiz-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.quiz-box {
+    background: rgba(29, 133, 196, 0.8); /* Azul translúcido */
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.score {
+    text-align: right;
+    font-weight: bold;
+    color: #00A8E8; /* Azul claro */
+}
+
+.question p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options label {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.options label:hover {
+    background: rgba(29, 133, 196, 0.7); /* Azul destacado */
+    transform: scale(1.02);
+}
+
+.options input {
+    margin-right: 10px;
+}
+
+.footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer span {
+    font-size: 0.9em;
+}
+
+.footer button {
+    background: #2c6e97; /* Azul principal */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.footer button:hover {
+    background: #005F99; /* Azul mais escuro */
+    transform: scale(1.05);
+}
